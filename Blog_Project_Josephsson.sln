@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InfrastructureTests", "Infr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataStore", "DataStore\DataStore.csproj", "{FFF32CDF-AE21-45B6-A336-2F01FC3D78B8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web_UI", "Web_UI\Web_UI.csproj", "{89591BA6-E02C-4BC4-B381-27B51C910D4F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{FFF32CDF-AE21-45B6-A336-2F01FC3D78B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FFF32CDF-AE21-45B6-A336-2F01FC3D78B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FFF32CDF-AE21-45B6-A336-2F01FC3D78B8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{89591BA6-E02C-4BC4-B381-27B51C910D4F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{89591BA6-E02C-4BC4-B381-27B51C910D4F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{89591BA6-E02C-4BC4-B381-27B51C910D4F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{89591BA6-E02C-4BC4-B381-27B51C910D4F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
