@@ -7,12 +7,12 @@ namespace Infrastructure.Parsers
 {
     public class MarkdigParser : IOutputStrategy
     {
-        private readonly MarkdownPipeline _pipeline;
-
-        public MarkdigParser(MarkdownPipeline pipeline)
-        {
-            _pipeline = pipeline;
-        }
+        private static MarkdownPipeline pipeline = new MarkdownPipelineBuilder()
+                .UseDiagrams()
+                .UseAdvancedExtensions()
+                .UseYamlFrontMatter()
+                .DisableHtml()
+                .Build();
 
         public string[] Transform(IBlogPost blogPost)
         {
@@ -27,8 +27,8 @@ namespace Infrastructure.Parsers
             }
 
             var array = new string[2];
-            array[0] = Markdown.ToHtml(blogPost.Title, _pipeline);
-            array[1] = Markdown.ToHtml(blogPost.Body, _pipeline);
+            array[0] = Markdown.ToHtml(blogPost.Title, pipeline);
+            array[1] = Markdown.ToHtml(blogPost.Body, pipeline);
             return array;
         }
     }
