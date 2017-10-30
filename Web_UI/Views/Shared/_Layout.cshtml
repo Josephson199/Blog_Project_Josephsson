@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="shortcut icon" href="~/faviconv2.ico">
     <title>Bjorn Josephson</title>   
 </head>
 
@@ -17,8 +18,8 @@
        </div>
        <div class="nav">
            <ul>
-               <li><a asp-action="Index" asp-controller="Home">About</a></li>
-               <li><a href="#">Contact</a></li>
+               <li><a asp-action="About" asp-controller="Home">About</a></li>
+               <li><a asp-action="Contact" asp-controller="Home">Contact</a></li>
                <li><a asp-action="Blog" asp-controller="Home">Blog</a></li>
                <li><a href="#">Something</a></li>
            </ul>
@@ -49,6 +50,7 @@
 
     body {
         margin: 0;
+        font-family: 'PT Sans', sans-serif;
     }
 
     html {
@@ -116,7 +118,7 @@
     }
 
     .nav ul li a {
-        font-family: 'PT Sans', sans-serif;
+        
         text-decoration: none;
         display: block;
         padding: 10px 20px;

@@ -1,0 +1,35 @@
+﻿@model Web_UI.Models.Admin.EditViewModel
+
+
+<article>
+    <h2>Edit Post</h2>
+    <div class="col-md-12 well">
+        <form method="post" id="editpost" enctype="multipart/form-data" asp-action="Edit" asp-controller="Admin">
+            <input hidden asp-for="@Model.EditedPostModel.Id" />
+            <div class="form-group col-md-6">
+                <label for="Title">Title</></label>
+                <input type="text" class="form-control" placeholder="" asp-for="@Model.EditedPostModel.Title" data-oldtitle="@Model.EditedPostModel.Title" />
+                <span asp-validation-for="@Model.EditedPostModel.Title" class="text-warning"></span>
+            </div>
+            <div class="col-md-12 form-group">
+                <label for="Body" class="primaryField">Body</label>
+                <textarea rows="10" class="form-control" placeholder="" asp-for="@Model.EditedPostModel.Body" id="post-body"></textarea>
+                <span asp-validation-for="@Model.EditedPostModel.Body" class="text-warning"></span>
+            </div>
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label>Upload Files</label>
+                    <input type="file" name="files" multiple id="file-input" onchange="insertFiles()" />
+                </div>
+            </div>
+            <div class="col-md-12">
+                <input type="submit" name="submitButton" class="btn btn-primary btn-sm" value="Save Draft" />
+                <input type="submit" name="submitButton" id="postsave" class="btn btn-primary btn-sm" value="Publish" />
+            </div>
+            
+        </form>
+    </div>
+</article>
+
+
+<script src="~/js/updateBody.js"></script>

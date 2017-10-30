@@ -20,15 +20,21 @@ namespace Web_UI.Controllers
             _dataStore = dataStore;
         }
 
-        public IActionResult Index()
+        public IActionResult About()
         {    
-            var viewModel = new IndexViewModel
+            var viewModel = new AboutViewModel
             {
                
             };
-
             return View(viewModel);
         }
+
+        public IActionResult Contact()
+        {
+            return View();
+        }
+
+      
 
         public IActionResult Blog()
         {
@@ -59,5 +65,7 @@ namespace Web_UI.Controllers
 
             return View(viewModel);
         }
+
+       
     }
 }
