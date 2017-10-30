@@ -4,6 +4,6 @@ namespace Infrastructure.Interfaces
 {
     public interface IOutputStrategy
     {
-        string Transform(BlogPost blogPost);
+        string Transform(string markdown);
     }
 }

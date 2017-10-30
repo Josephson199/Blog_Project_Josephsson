@@ -15,15 +15,16 @@ namespace Infrastructure.Parsers
                 .DisableHtml()
                 .Build();
 
-        public string Transform(BlogPost blogPost)
+        public string Transform(string markdown)
         {
-            if (string.IsNullOrWhiteSpace(blogPost.Body))
+            if (string.IsNullOrWhiteSpace(markdown))
             {
-                throw new ArgumentNullException("Body cannot be null or whitespace.");
+                throw new ArgumentNullException(nameof(markdown));
             }
 
-            return Markdown.ToHtml(blogPost.Body, pipeline);
-            
+            var result = Markdown.ToHtml(markdown, pipeline);
+
+            return result;
         }
     }
       

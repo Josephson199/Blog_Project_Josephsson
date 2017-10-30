@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using DataStore;
 using Web_UI.Models.Home;
 using DataStore.Models;
+using Infrastructure.Parsers;
 
 namespace Web_UI.Controllers
 {
@@ -35,7 +36,29 @@ namespace Web_UI.Controllers
         {
             var posts = _dataStore.GetAllPosts();
 
-            return View();
+            var viewModel = new BlogViewModel
+            {
+                PostModels = new List<PostModel>()
+            };
+
+            if (!posts.Any())
+            {
+                return View(viewModel);               
+            }          
+
+            foreach (var post in posts)
+            {
+                var postModel = new PostModel
+                {
+                    Body = post.Body,
+                    OutputStrategy = new MarkdigParser(),
+                    Title = post.Title
+                };
+
+                viewModel.PostModels.Add(postModel);
+            }
+
+            return View(viewModel);
         }
     }
 }
