@@ -15,7 +15,8 @@ namespace Web_UI.Models.Home
     {
         public string Title { get; set; }
         public string Body { get; set; }
-        
+        public DateTimeOffset PubDate { get; set; }
+
         public IOutputStrategy OutputStrategy { get; set; }
         public string Parse()
         {

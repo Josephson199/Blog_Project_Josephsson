@@ -1,13 +1,57 @@
 ﻿@model Web_UI.Models.Home.BlogViewModel
 
 
+<div class="row">
+    <div class="col-md-6 col-md-offset-3">
+        @{
+
+            foreach (var post in Model.PostModels)
+            {
+                <div class="post">
+                    <h1 class="title">@post.Title</h1>
+
+                    <h2 class="pubDate">@post.PubDate.ToString("MMM dd, yyyy")</h2>
+
+                    <div class="bodyContent">
+                        @Html.Raw(post.Parse())
+                    </div>
 
 
-@{ 
-   
-    foreach (var post in Model.PostModels)
-    {
-        <h1>@post.Title</h1>
-        @Html.Raw(post.Parse());
+                    <div class="comments">COMMENTS AND SHIT</div>
+                </div>
+
+            }
+        }
+    </div>
+</div>
+
+
+<style>
+    .comments{
+        text-align:center;
     }
-}
+    .post{
+        margin-top: 60px;
+    }
+    .title {
+        text-align: center;
+        font-family: 'PT Sans', sans-serif;
+        margin-bottom: 40px;
+    }
+    .bodyContent {
+        font-family: 'PT Sans', sans-serif;
+        margin: 0 0 80px;
+    }
+    .pubDate {
+        font-size: 13px;
+        line-height: 1em;
+        text-transform: none;
+        text-decoration: none;
+        letter-spacing: 0px;
+        text-align: center;
+        font-weight: 400;
+        font-style: normal;
+        color: #bcbcbc;
+        margin-bottom: 40px;
+    }
+</style>

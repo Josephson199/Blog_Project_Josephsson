@@ -13,9 +13,7 @@ namespace Web_UI.Controllers
     public class HomeController : Controller
     {
         private readonly BlogDataStore _dataStore;
-        const string StorageFolder = "BlogFiles";
-
-       
+        const string StorageFolder = "BlogFiles";       
 
         public HomeController(BlogDataStore dataStore)
         {
@@ -50,6 +48,7 @@ namespace Web_UI.Controllers
             {
                 var postModel = new PostModel
                 {
+                    PubDate = post.PubDate,
                     Body = post.Body,
                     OutputStrategy = new MarkdigParser(),
                     Title = post.Title
