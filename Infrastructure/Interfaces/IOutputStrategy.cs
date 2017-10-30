@@ -1,9 +1,9 @@
-﻿
+﻿using DataStore.Models;
 
 namespace Infrastructure.Interfaces
 {
     public interface IOutputStrategy
     {
-        string[] Transform(IBlogPost blogPost);
+        string Transform(BlogPost blogPost);
     }
 }

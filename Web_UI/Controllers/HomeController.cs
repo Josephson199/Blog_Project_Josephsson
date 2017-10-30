@@ -14,7 +14,7 @@ namespace Web_UI.Controllers
         private readonly BlogDataStore _dataStore;
         const string StorageFolder = "BlogFiles";
 
-        public IEnumerable<PostSummaryModel> PostSummaries { get; private set; }
+       
 
         public HomeController(BlogDataStore dataStore)
         {
@@ -22,23 +22,20 @@ namespace Web_UI.Controllers
         }
 
         public IActionResult Index()
-        {
-            IEnumerable<BlogPost> postModels = _dataStore.GetAllPosts().Where(p => p.IsPublic && !p.IsDeleted);
-
-            PostSummaries = postModels.Select(p => new PostSummaryModel
-            {
-                Id = p.Id,
-                Title = p.Title,
-                PublishTime = p.PubDate,
-                CommentCount = p.Comments.Where(c => c.IsPublic).Count(),
-            });
-
+        {    
             var viewModel = new IndexViewModel
             {
-                PostSummaries = PostSummaries
+               
             };
 
             return View(viewModel);
+        }
+
+        public IActionResult Blog()
+        {
+            var posts = _dataStore.GetAllPosts();
+
+            return View();
         }
     }
 }

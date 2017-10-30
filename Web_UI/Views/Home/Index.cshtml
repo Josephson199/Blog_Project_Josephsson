@@ -1,29 +1,9 @@
-﻿
-@model Web_UI.Models.Home.IndexViewModel
+﻿@model Web_UI.Models.Home.IndexViewModel
 
-@{
-    ViewData["Title"] = "Home Page";
 
-    if (!Model.PostSummaries.Any())
-    {
-        <div class="jumbotron">
-            <h1>Welcome!</h1>
-            <p>Get started and write your first blog post <a class="text-primary" asp-page="/New">here</a>.</p>
-            <p>Happy blogging!</p>
-        </div>
-    }
+<div class="jumbotron">
+    <h1>Welcome!</h1>
+</div>
+    
 
-    else
-    {
-        foreach (var post in Model.PostSummaries)
-        {
-            <article>
-                <div class="col-md-12">
-                    <h2><a asp-page="/post" asp-route-id="@post.Id.ToString("N")">@post.Title</a></h2>
-                    <div class="h5 text-muted">@post.PublishTime.ToString("MMM dd, yyyy")</div>
-                    <div class="h4"><a asp-page="/post" asp-route-id="@post.Id.ToString("N")"><span class="glyphicon glyphicon-comment"></span> @post.CommentCount</a></div>
-                </div>
-            </article>
-        }
-    }
-}
+  

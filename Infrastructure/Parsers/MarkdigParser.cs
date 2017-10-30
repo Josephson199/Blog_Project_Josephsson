@@ -2,6 +2,7 @@
 using System;
 
 using Markdig;
+using DataStore.Models;
 
 namespace Infrastructure.Parsers
 {
@@ -14,22 +15,15 @@ namespace Infrastructure.Parsers
                 .DisableHtml()
                 .Build();
 
-        public string[] Transform(IBlogPost blogPost)
+        public string Transform(BlogPost blogPost)
         {
-            if (string.IsNullOrWhiteSpace(blogPost.Title))
-            {
-                throw new ArgumentNullException("Title cannot be null or whitespace.");
-            }
-
             if (string.IsNullOrWhiteSpace(blogPost.Body))
             {
                 throw new ArgumentNullException("Body cannot be null or whitespace.");
             }
 
-            var array = new string[2];
-            array[0] = Markdown.ToHtml(blogPost.Title, pipeline);
-            array[1] = Markdown.ToHtml(blogPost.Body, pipeline);
-            return array;
+            return Markdown.ToHtml(blogPost.Body, pipeline);
+            
         }
     }
       
