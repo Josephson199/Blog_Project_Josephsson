@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using DataStore;
+using Microsoft.Extensions.Configuration;
+using Web_UI.ActionFilters;
 
 namespace Web_UI
 {
@@ -30,6 +32,8 @@ namespace Web_UI
             {
                 app.UseExceptionHandler("/Error");
             }
+
+                      
 
             app.UseStaticFiles();
             app.UseMvc(routes =>

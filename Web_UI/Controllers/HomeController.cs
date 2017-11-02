@@ -7,6 +7,7 @@ using DataStore;
 using Web_UI.Models.Home;
 using DataStore.Models;
 using Infrastructure.Parsers;
+using Microsoft.AspNetCore.Http;
 
 namespace Web_UI.Controllers
 {
@@ -38,7 +39,7 @@ namespace Web_UI.Controllers
 
         public IActionResult Blog()
         {
-            var posts = _dataStore.GetAllPosts();
+            var posts = _dataStore.GetAllPosts().Where(p => !p.IsDeleted && p.IsPublic);
 
             var viewModel = new BlogViewModel
             {
@@ -66,6 +67,53 @@ namespace Web_UI.Controllers
             return View(viewModel);
         }
 
-       
+        public IActionResult Login()
+        {
+            string result = "";
+            Request.Cookies.TryGetValue("LoggedIn", out result);
+
+            if(result == "LoggedIn")
+            {
+                return RedirectToAction("About");
+            }
+
+            var viewModel = new LoginViewModel();
+            return View(viewModel);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Login(LoginViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            if(model.Email.ToLower().Trim() != "" && model.Password.Trim() != "")
+            {
+                return View(model);
+            }
+
+            var options = new CookieOptions
+            {
+                Expires = DateTime.Now.AddDays(999)
+            };
+
+            Response.Cookies.Delete("LoggedIn");      
+                        
+            Response.Cookies.Append("LoggedIn", "LoggedIn", options);
+            
+            return RedirectToAction("About");
+
+        }
+
+        public IActionResult Logout()
+        {
+            Response.Cookies.Delete("LoggedIn");
+            return RedirectToAction("About");
+        }
+
+
     }
 }

@@ -1,0 +1,15 @@
+﻿@model Web_UI.Models.Home.LoginViewModel
+
+<form asp-action="Login" asp-antiforgery="true" asp-controller="Home">
+    <div class="form-group">
+        <label for="Title">Email</label>
+        <input type="text" class="form-control" placeholder="" asp-for="@Model.Email" />
+        <span asp-validation-for="@Model.Email" class="text-warning"></span>
+    </div>
+    <div class="form-group">
+        <label for="Title">Password</label>
+        <input type="password" class="form-control" placeholder="" asp-for="@Model.Password" />
+        <span asp-validation-for="@Model.Password" class="text-warning"></span>
+    </div>   
+    <button type="submit" class="btn btn-default">Submit</button>
+</form>

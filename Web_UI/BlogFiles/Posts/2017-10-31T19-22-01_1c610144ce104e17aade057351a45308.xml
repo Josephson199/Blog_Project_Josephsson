@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Post>
+  <Id>1c610144ce104e17aade057351a45308</Id>
+  <Title>test</Title>
+  <Body># Test</Body>
+  <PubDate>2017-10-31T20:22:01.9407818+01:00</PubDate>
+  <LastModified>2017-10-31T20:22:03.2140565+01:00</LastModified>
+  <IsPublic>True</IsPublic>
+  <IsDeleted>True</IsDeleted>
+  <Comments />
+</Post>

@@ -4,11 +4,11 @@
 <article>
     <h2>Edit Post</h2>
     <div class="col-md-12 well">
-        <form method="post" id="editpost" enctype="multipart/form-data" asp-action="Edit" asp-controller="Admin">
+        <form method="post" enctype="multipart/form-data" asp-action="Edit" asp-controller="Admin">
             <input hidden asp-for="@Model.EditedPostModel.Id" />
             <div class="form-group col-md-6">
                 <label for="Title">Title</></label>
-                <input type="text" class="form-control" placeholder="" asp-for="@Model.EditedPostModel.Title" data-oldtitle="@Model.EditedPostModel.Title" />
+                <input type="text" class="form-control" placeholder="" asp-for="@Model.EditedPostModel.Title" />
                 <span asp-validation-for="@Model.EditedPostModel.Title" class="text-warning"></span>
             </div>
             <div class="col-md-12 form-group">
@@ -24,7 +24,8 @@
             </div>
             <div class="col-md-12">
                 <input type="submit" name="submitButton" class="btn btn-primary btn-sm" value="Save Draft" />
-                <input type="submit" name="submitButton" id="postsave" class="btn btn-primary btn-sm" value="Publish" />
+                <input type="submit" name="submitButton" class="btn btn-primary btn-sm" value="Publish" />
+                <input type="submit" name="submitButton" class="btn btn-danger btn-sm" value="Delete" />
             </div>
             
         </form>

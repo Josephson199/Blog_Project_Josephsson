@@ -7,19 +7,22 @@ using DataStore;
 using Web_UI.Models.New;
 using DataStore.Models;
 using Web_UI.Models.Admin;
+using Web_UI.ActionFilters;
 
 namespace Web_UI.Controllers
 {
     [Route("admin")]
+    [TypeFilter(typeof(CustomAuthorize))]
     public class AdminController : Controller
-    {
+    {     
+
         private readonly BlogDataStore _dataStore;
 
         public AdminController(BlogDataStore blogDataStore)
         {
             _dataStore = blogDataStore;
         }
-
+      
         [Route("new")]
         public IActionResult New()
         {
@@ -32,7 +35,7 @@ namespace Web_UI.Controllers
         }
 
 
-        [Route("new/save")]
+        [Route("new")]
         [HttpPost]        
         public IActionResult New(NewViewModel viewModel, string submitButton)
         {
@@ -64,7 +67,7 @@ namespace Web_UI.Controllers
 
             if(submitButton == "Save Draft")
             {
-                return RedirectToAction("Draft", "Admin");
+                return RedirectToAction("Drafts", "Admin");
             };
 
             return RedirectToAction("Blog", "Home");
@@ -75,7 +78,7 @@ namespace Web_UI.Controllers
         [Route("drafts")]
         public IActionResult Drafts()
         {
-            var postModels = _dataStore.GetAllDrafts().Where(post => !post.IsPublic);
+            var postModels = _dataStore.GetAllDrafts().Where(post => !post.IsPublic && !post.IsDeleted);
 
             var viewModel = new DraftsViewModel
             {
@@ -101,7 +104,38 @@ namespace Web_UI.Controllers
             return View(viewModel);
         }
 
-        [Route("Edit/{id}")]
+        [Route("all")]
+        public IActionResult All()
+        {
+            var postModels = _dataStore.GetAllPosts();
+
+            var viewModel = new AllViewModel
+            {
+                AllSummaries = new List<AllSummaryModel>()
+            };
+
+            if (!postModels.Any())
+            {
+                return View(viewModel);
+            }
+
+            foreach (var post in postModels)
+            {
+                viewModel.AllSummaries.Add(new AllSummaryModel
+                {
+                    Id = post.Id,
+                    Title = post.Title,
+                    CommentCount = post.Comments.Count,
+                    PublishTime = post.PubDate,
+                    IsDeleted = post.IsDeleted,
+                    IsPublic = post.IsPublic
+                });
+            }
+
+            return View(viewModel);
+        }
+
+        [Route("edit/{id}")]
         public IActionResult Edit(string id)
         {
             var post = _dataStore.GetPost(id);
@@ -115,7 +149,7 @@ namespace Web_UI.Controllers
             {
                 EditedPostModel = new EditedPostModel
                 {
-                    Id = post.Id.ToString(),
+                    Id = post.Id.ToString("N"),
                     Title = post.Title,
                     Body = post.Body
                 }
@@ -124,6 +158,7 @@ namespace Web_UI.Controllers
             return View(viewModel);
         }
 
+        [Route("edit/{id}")]
         [HttpPost]
         public IActionResult Edit(EditViewModel viewModel, string submitButton)
         {           
@@ -132,9 +167,46 @@ namespace Web_UI.Controllers
             if (post == null)
             {
                 return RedirectToAction("Drafts");
-            }           
+            }
 
-            return View(viewModel);
+            if (!ModelState.IsValid)
+            {
+                return RedirectToAction("Drafts", "Admin");
+            }
+
+            if(submitButton == "Delete")
+            {
+                post.IsDeleted = true;
+                _dataStore.UpdatePost(post, post.IsPublic);
+                return RedirectToAction("Drafts", "Admin");
+            }
+
+            var wasPublic = post.IsPublic;
+
+            post.Body = viewModel.EditedPostModel.Body;
+            post.Title = viewModel.EditedPostModel.Title;
+            post.LastModified = DateTimeOffset.Now;
+            post.IsDeleted = false;
+        
+            if (submitButton == "Publish")
+            {
+                post.PubDate = DateTimeOffset.Now;
+                post.IsPublic = true;                
+            }
+
+            _dataStore.UpdatePost(post, wasPublic);
+
+            if (Request != null)
+            {
+                _dataStore.SaveFiles(Request.Form.Files.ToList());
+            }
+
+            if (submitButton == "Save Draft")
+            {                
+                return RedirectToAction("Drafts", "Admin");
+            };
+
+            return RedirectToAction("Blog", "Home");
         }
 
     }

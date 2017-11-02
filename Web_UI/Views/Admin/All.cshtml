@@ -1,0 +1,25 @@
+﻿@model Web_UI.Models.Admin.AllViewModel
+
+
+@{ 
+    foreach (var post in Model.AllSummaries.OrderBy(p => p.IsDeleted))
+    {
+        <h1><a asp-controller="Admin" asp-action="Edit" asp-route-id="@post.Id.ToString("N")">@post.Title</a></h1>
+        @if (post.IsDeleted)
+        {
+            <span style="color:red;">Deleted</span>
+
+        }
+        @if (!post.IsDeleted && post.IsPublic)
+        {
+            <span style="color:blueviolet;">Published</span>
+
+        }
+        @if (!post.IsDeleted && !post.IsPublic)
+        {
+            <span style="color:cyan;">Not published</span>
+
+        }
+    }
+}
+
