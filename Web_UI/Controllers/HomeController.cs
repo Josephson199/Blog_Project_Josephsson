@@ -90,21 +90,21 @@ namespace Web_UI.Controllers
                 return View(model);
             }
 
-            if(model.Email.ToLower().Trim() != "" && model.Password.Trim() != "")
+            if(model.Email.ToLower().Trim() == "" && model.Password.Trim() == "")
             {
-                return View(model);
+                var options = new CookieOptions
+                {
+                    Expires = DateTime.Now.AddDays(999)
+                };
+
+                Response.Cookies.Delete("LoggedIn");
+
+                Response.Cookies.Append("LoggedIn", "LoggedIn", options);
+
+                return RedirectToAction("About");
             }
 
-            var options = new CookieOptions
-            {
-                Expires = DateTime.Now.AddDays(999)
-            };
-
-            Response.Cookies.Delete("LoggedIn");      
-                        
-            Response.Cookies.Append("LoggedIn", "LoggedIn", options);
-            
-            return RedirectToAction("About");
+            return View(model);
 
         }
 

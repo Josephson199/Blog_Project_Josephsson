@@ -1,9 +1,23 @@
 ﻿@model Web_UI.Models.Home.AboutViewModel
 
 <div class="row" style="margin-top:55px;">
-    <div class="col-md-3 col-md-offset-1"><img class="img-circle" style="float:right;" height="200" src="https://scontent.fmmx1-1.fna.fbcdn.net/v/t1.0-9/20525880_10155221890398780_82121454029297138_n.jpg?oh=2ee60d67f5ece068b1decb4bd65949a5&oe=5A6B400E" alt="Alternate Text" /></div>
-    <div class="col-md-7">Aenean posuere vestibulum congue. Pellentesque vitae ligula malesuada, lacinia augue sodales, rutrum sem. Duis vel massa venenatis, laoreet risus vel, venenatis ligula. Mauris fermentum non lacus facilisis interdum. Sed vehicula eget magna quis vulputate. Aliquam vitae sapien orci. Fusce non sapien sed ligula porttitor sodales. Nunc vulputate tempor enim, ac elementum risus efficitur id. Duis dictum, augue ut fermentum placerat, lectus mi gravida ante, ac sagittis neque eros ut orci. Sed pretium felis vitae volutpat lacinia.</div>
+    <div class="col-md-3 col-md-offset-1"><img class="img-circle" style="float:right;" height="200" src="~/Images/bjornaboutpic.jpg" alt="Alternate Text" /></div>
+    <div class="col-md-7">
+      <h2>I’m a Technical Recruiter.</h2>
+      <p>Officially, my job is to lead  the talent acquisition of engineers/technicians and drive the recruitment process from start to finish in close collaboration with key stakeholders and the tech teams. I'm also involved with strategic HR projects.</p>
+        <p>Basically? It’s all about using any means possible to attract and hire the top 20% of technical talent on the market. To learn more check out my <a style="font-weight:900;" asp-controller="Home" asp-action="Blog">blog</a></p>
+        <h3>Say hi:</h3>      
+        <p><a href="mailto:bjornjosephson@gmail.com">bjornjosephson@gmail.com</a></p>
+
+    </div>
 </div>
 
+<style>
+    @@media screen and (max-width: 480px) {
+    img {
+        display: none;
+    }
+}
+</style>
 
   
