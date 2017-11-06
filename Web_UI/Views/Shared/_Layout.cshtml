@@ -19,7 +19,7 @@
        <div class="nav">
            <ul>
                <li><a asp-action="About" asp-controller="Home">About</a></li>
-               <li><a asp-action="Contact" asp-controller="Home">Contact</a></li>
+               <li><a asp-action="Work" asp-controller="Home">Work</a></li>
                <li><a asp-action="Blog" asp-controller="Home">Blog</a></li>
                 @{ 
                     string result = "";
@@ -38,7 +38,7 @@
            </ul>
        </div>
    </div>
-    <div class="container">
+    <div class="container-fluid">
         @RenderBody()
     </div>
     <footer class="footer">
@@ -74,16 +74,15 @@
     body {
         margin: 0;
         font-family: 'PT Sans', sans-serif;
+        line-height: 1.5;
+        letter-spacing: 0.7px;
+        /* Margin bottom by footer height */
+        margin-bottom: 210px;
     }
 
     html {
         position: relative;
         min-height: 100%;
-    }
-
-    body {
-        /* Margin bottom by footer height */
-        margin-bottom: 180px;
     }
 
     .footer {
@@ -92,7 +91,7 @@
         bottom: 0;
         width: 100%;
         /* Set the fixed height of the footer here */
-        height: 180px;
+        height: 210px;
         background-color: white;
     }
 

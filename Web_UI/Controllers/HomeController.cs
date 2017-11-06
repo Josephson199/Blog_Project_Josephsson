@@ -30,7 +30,7 @@ namespace Web_UI.Controllers
             return View(viewModel);
         }
 
-        public IActionResult Contact()
+        public IActionResult Work()
         {
             return View();
         }
