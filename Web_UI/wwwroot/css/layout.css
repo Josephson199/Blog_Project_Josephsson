@@ -1,0 +1,97 @@
+﻿
+i {
+    font-size: 38px !important;
+    padding: 10px;
+}
+
+body {
+    margin: 0;
+    font-family: 'PT Sans', sans-serif;
+    line-height: 1.5;
+    letter-spacing: 0.7px;
+    /* Margin bottom by footer height */
+    margin-bottom: 210px;
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    /* Set the fixed height of the footer here */
+    height: 210px;
+    background-color: white;
+}
+
+
+
+.logo {
+    max-height: 75px;
+    max-width: 100%;
+}
+
+.header {
+    width: 100%;
+    height: auto;
+    background-color: white;
+    padding-top: 24px;
+    text-align: center;
+}
+
+.headerContent {
+    height: auto;
+    margin: 20px 20px;
+    background: white;
+}
+
+.headerContent img {
+    margin: 0px auto;
+    display: block;
+}
+
+ul {
+    
+}
+
+.nav {
+    display: inline-block;
+    height: 40px;
+}
+
+.nav ul {
+    margin: 0;
+    padding: 0;
+}
+
+.nav ul li {
+    list-style: none;
+    display: inline-block;
+}
+
+.nav ul li a {
+    text-decoration: none;
+    display: block;
+    padding: 10px 20px;
+    color: #343434;
+    font-size: 12px;
+    line-height: 1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    letter-spacing: 1px;
+    text-align: left;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.nav ul li a:hover {
+    -webkit-transition: color .14s .2s ease-out;
+    -moz-transition: color .14s .2s ease-out;
+    -o-transition: color .14s .2s ease-out;
+    transition: color .14s .2s ease-out;
+    cursor: pointer;
+    color: #818181;
+}

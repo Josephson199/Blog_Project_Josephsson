@@ -1,0 +1,17 @@
+﻿
+
+@media screen and (max-width: 480px) {
+    #aboutProfilePic {
+        display: none;
+    }
+}
+
+
+#aboutProfilePic {
+    float: right;
+}
+
+a {
+    font-weight: 900;
+}
+

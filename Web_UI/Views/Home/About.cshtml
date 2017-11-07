@@ -1,23 +1,17 @@
 ﻿@model Web_UI.Models.Home.AboutViewModel
 
+
+<link rel="stylesheet" href="~/css/about.css">
+
 <div class="row" style="margin-top:55px;">
-    <div class="col-md-3 col-md-offset-1"><img class="img-circle" style="float:right;" height="200" src="~/Images/bjornaboutpic.jpg" alt="Alternate Text" /></div>
+    <div class="col-md-3 col-md-offset-1"><img id="aboutProfilePic" class="img-circle" height="200" src="~/Images/bjornaboutpic.jpg" alt="Alternate Text" /></div>
     <div class="col-md-6">
       <h2>I’m a Tech Recruiter.</h2>
       <p>Officially, my job is to lead  the talent acquisition of engineers/technicians and drive the recruitment process from start to finish in close collaboration with key stakeholders and the tech teams. I'm also involved with strategic HR projects.</p>
-        <p>Basically? It’s all about using any means possible to attract and hire the top 20% of technical talent on the market. To learn more check out my <a style="font-weight:900;" asp-controller="Home" asp-action="Blog">blog</a></p>
+        <p>Basically? It’s all about using any means possible to attract and hire the top 20% of technical talent on the market. To learn more check out my <a asp-controller="Home" asp-action="Blog">blog</a></p>
         <h3>Say hi:</h3>      
         <p><a href="mailto:bjornjosephson@gmail.com">bjornjosephson@gmail.com</a></p>
-
     </div>
 </div>
 
-<style>
-    @@media screen and (max-width: 480px) {
-    img {
-        display: none;
-    }
-}
-</style>
 
-  

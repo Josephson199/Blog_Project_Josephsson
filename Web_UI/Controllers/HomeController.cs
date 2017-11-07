@@ -1,23 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using DataStore;
 using Web_UI.Models.Home;
-using DataStore.Models;
 using Infrastructure.Parsers;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Caching.Memory;
 
 namespace Web_UI.Controllers
 {
     public class HomeController : Controller
     {
+        private IMemoryCache _cache;
         private readonly BlogDataStore _dataStore;
         const string StorageFolder = "BlogFiles";       
 
-        public HomeController(BlogDataStore dataStore)
-        {
+        public HomeController(BlogDataStore dataStore, IMemoryCache cache)
+        {           
+            _cache = cache;
             _dataStore = dataStore;
         }
 
@@ -39,7 +40,7 @@ namespace Web_UI.Controllers
 
         public IActionResult Blog()
         {
-            var posts = _dataStore.GetAllPosts().Where(p => !p.IsDeleted && p.IsPublic);
+            var posts = _dataStore.GetAllPosts().Where(p => !p.IsDeleted && p.IsPublic).ToList();
 
             var viewModel = new BlogViewModel
             {
@@ -90,7 +91,7 @@ namespace Web_UI.Controllers
                 return View(model);
             }
 
-            if(model.Email.ToLower().Trim() == "" && model.Password.Trim() == "")
+            if(model.Email.ToLower().Trim() == "bjornjosephson@gmail.com" && model.Password.Trim() == "Nallelol123$")
             {
                 var options = new CookieOptions
                 {
@@ -113,7 +114,6 @@ namespace Web_UI.Controllers
             Response.Cookies.Delete("LoggedIn");
             return RedirectToAction("About");
         }
-
 
     }
 }

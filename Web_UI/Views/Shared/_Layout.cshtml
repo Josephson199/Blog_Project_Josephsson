@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="~/css/layout.css" />
     <link rel="shortcut icon" href="~/faviconv2.ico">
     <title>Bjorn Josephson</title>   
 </head>
@@ -14,7 +15,7 @@
 <body>    
    <div class="header">
        <div class="headerContent">          
-            <img class="logo" src="~/Images/BjornJosephson.png"  />
+            <a asp-action="About" asp-controller="Home"><img class="logo" src="~/Images/BjornJosephson.png" alt="Picture of handsome man"/></a>
        </div>
        <div class="nav">
            <ul>
@@ -63,108 +64,6 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 </body>
 </html>
-
-<style>
-    
-    i{
-        font-size:38px!important;
-        padding:10px;
-    }
-
-    body {
-        margin: 0;
-        font-family: 'PT Sans', sans-serif;
-        line-height: 1.5;
-        letter-spacing: 0.7px;
-        /* Margin bottom by footer height */
-        margin-bottom: 210px;
-    }
-
-    html {
-        position: relative;
-        min-height: 100%;
-    }
-
-    .footer {
-       
-        position: absolute;
-        bottom: 0;
-        width: 100%;
-        /* Set the fixed height of the footer here */
-        height: 210px;
-        background-color: white;
-    }
-
-
-
-    .logo {
-        max-height: 75px;
-        max-width: 100%;
-    }
-
-    .header {
-        width: 100%;
-        height: auto;
-        background-color: white;
-        padding-top: 24px;
-        text-align: center;
-    }
-
-    .headerContent {
-        height: auto;
-        margin: 20px 20px;
-        background: white;
-    }
-
-    .headerContent img {
-        margin: 0px auto;
-        display: block;
-    }
-
-    ul {
-        display: table;
-    }
-
-    .nav {
-        display: inline-block;
-        height: 40px;
-    }
-
-    .nav ul {
-        margin: 0;
-        padding: 0;
-    }
-
-    .nav ul li {
-        list-style: none;
-        display: inline-block;
-    }
-
-    .nav ul li a {
-        
-        text-decoration: none;
-        display: block;
-        padding: 10px 20px;
-        color: #343434;
-        font-size: 12px;
-        line-height: 1em;
-        text-transform: uppercase;
-        text-decoration: none;
-        letter-spacing: 1px;
-        text-align: left;
-        font-weight: 400;
-        font-style: normal;
-    }
-
-    .nav ul li a:hover {
-        -webkit-transition: color .14s .2s ease-out;
-        -moz-transition: color .14s .2s ease-out;
-        -o-transition: color .14s .2s ease-out;
-        transition: color .14s .2s ease-out;
-        cursor: pointer;
-        color: #818181;
-    }
-</style>
    
 
 
