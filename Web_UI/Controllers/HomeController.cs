@@ -91,7 +91,7 @@ namespace Web_UI.Controllers
                 return View(model);
             }
 
-            if(model.Email.ToLower().Trim() == "bjornjosephson@gmail.com" && model.Password.Trim() == "Nallelol123$")
+            if(model.Email.ToLower().Trim() == "" && model.Password.Trim() == "")
             {
                 var options = new CookieOptions
                 {
