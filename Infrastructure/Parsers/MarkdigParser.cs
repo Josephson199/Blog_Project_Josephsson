@@ -9,10 +9,24 @@ namespace Infrastructure.Parsers
     public class MarkdigParser : IOutputStrategy
     {
         private static MarkdownPipeline pipeline = new MarkdownPipelineBuilder()
+                .UseAbbreviations()
+                .UseAutoIdentifiers()
+                .UseCitations()
+                .UseCustomContainers()
+                .UseDefinitionLists()
+                .UseEmphasisExtras()
+                .UseFigures()
+                .UseFooters()
+                .UseFootnotes()
+                .UseGridTables()
+                .UseMathematics()
+                .UseMediaLinks()
+                .UsePipeTables()
+                .UseListExtras()
+                .UseTaskLists()
                 .UseDiagrams()
-                .UseAdvancedExtensions()
-                .UseYamlFrontMatter()
-                .DisableHtml()
+                .UseAutoLinks()
+                .UseGenericAttributes()
                 .Build();
 
         public string Transform(string markdown)

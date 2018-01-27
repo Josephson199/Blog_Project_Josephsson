@@ -23,9 +23,23 @@
                 </div>
             </div>
             <div class="col-md-12">
-                <input type="submit" name="submitButton" class="btn btn-primary btn-sm" value="Save Draft" />
-                <input type="submit" name="submitButton" class="btn btn-primary btn-sm" value="Publish" />
-                <input type="submit" name="submitButton" class="btn btn-danger btn-sm" value="Delete" />
+                @if (Model.EditedPostModel.IsDeleted)
+                {
+                    <input type="submit" name="submitButton" class="btn btn-primary btn-sm" value="Save Draft" />
+                    <input type="submit" name="submitButton" class="btn btn-primary btn-sm" value="Publish" />
+                }
+                else if (Model.EditedPostModel.IsPublic && Model.EditedPostModel.IsDeleted)
+                {
+                    <input type="submit" name="submitButton" class="btn btn-primary btn-sm" value="Publish" />
+                    <input type="submit" name="submitButton" class="btn btn-primary btn-sm" value="Update" />
+                }
+                else if(Model.EditedPostModel.IsPublic && !Model.EditedPostModel.IsDeleted)
+                {
+                    <input type="submit" name="submitButton" class="btn btn-danger btn-sm" value="Delete" />
+                    <input type="submit" name="submitButton" class="btn btn-primary btn-sm" value="Update" />                    
+                }
+
+
             </div>
             
         </form>

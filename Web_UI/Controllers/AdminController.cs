@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using DataStore;
 using Web_UI.Models.New;
@@ -108,6 +107,7 @@ namespace Web_UI.Controllers
         public IActionResult All()
         {
             var postModels = _dataStore.GetAllPosts();
+            postModels.AddRange(_dataStore.GetAllDrafts());
 
             var viewModel = new AllViewModel
             {
@@ -151,7 +151,9 @@ namespace Web_UI.Controllers
                 {
                     Id = post.Id.ToString("N"),
                     Title = post.Title,
-                    Body = post.Body
+                    Body = post.Body,
+                    IsPublic = post.IsPublic,
+                    IsDeleted = post.IsDeleted
                 }
             };
 
@@ -174,37 +176,32 @@ namespace Web_UI.Controllers
                 return RedirectToAction("Drafts", "Admin");
             }
 
-            if(submitButton == "Delete")
-            {
-                post.IsDeleted = true;
-                _dataStore.UpdatePost(post, post.IsPublic);
-                return RedirectToAction("Drafts", "Admin");
-            }
-
             var wasPublic = post.IsPublic;
 
             post.Body = viewModel.EditedPostModel.Body;
             post.Title = viewModel.EditedPostModel.Title;
             post.LastModified = DateTimeOffset.Now;
-            post.IsDeleted = false;
-        
-            if (submitButton == "Publish")
-            {
-                post.PubDate = DateTimeOffset.Now;
-                post.IsPublic = true;                
-            }
+            post.IsDeleted = submitButton == "Delete";
+            
+            if(submitButton == "Publish")
+                post.IsPublic = true;
 
-            _dataStore.UpdatePost(post, wasPublic);
+            else if (submitButton == "Update")
+                post.IsPublic = true;
+
+            else if(submitButton == "Delete")
+                post.IsPublic = false;
+
+            else if(submitButton == "Save Draft")
+                post.IsPublic = false;
+
 
             if (Request != null)
             {
                 _dataStore.SaveFiles(Request.Form.Files.ToList());
             }
 
-            if (submitButton == "Save Draft")
-            {                
-                return RedirectToAction("Drafts", "Admin");
-            };
+            _dataStore.UpdatePost(post, wasPublic);     
 
             return RedirectToAction("Blog", "Home");
         }
