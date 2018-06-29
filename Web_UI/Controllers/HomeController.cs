@@ -89,15 +89,15 @@ namespace Web_UI.Controllers
             if (!ModelState.IsValid)
             {
                 return View(model);
-            }
+            };
 
-            if(model.Email.ToLower().Trim() == "" && model.Password.Trim() == "")
+            if(model.Email.ToLower().Trim() == Environment.GetEnvironmentVariable("ADMIN_USERNAME") && model.Password.Trim() == Environment.GetEnvironmentVariable("ADMIN_PASSWORD"))
             {
                 var options = new CookieOptions
                 {
                     Expires = DateTime.Now.AddDays(999)
                 };
-
+                
                 Response.Cookies.Delete("LoggedIn");
 
                 Response.Cookies.Append("LoggedIn", "LoggedIn", options);
